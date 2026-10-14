@@ -1,0 +1,84 @@
+// make sure you download this onto both microbits and make sure you put this code into the Microsoft Makecode for Microbit javascript section in a new project area.
+
+radio.onReceivedNumber(function (receivedNumber) {
+    enemy_item = receivedNumber
+    pauseUntil(() => !(chosen_item == 0))
+    if (enemy_item == 1 && chosen_item == 2 || enemy_item == 2 && chosen_item == 3 || enemy_item == 3 && chosen_item == 1) {
+        music._playDefaultBackground(music.builtInPlayableMelody(Melodies.PowerUp), music.PlaybackMode.InBackground)
+        basic.showLeds(`
+            . . . . .
+            . # . # .
+            . . . . .
+            # . . . #
+            . # # # .
+            `)
+        basic.pause(2000)
+        control.reset()
+    }
+    if (enemy_item == 1 && chosen_item == 3 || enemy_item == 2 && chosen_item == 1 || enemy_item == 3 && chosen_item == 2) {
+        music._playDefaultBackground(music.builtInPlayableMelody(Melodies.PowerDown), music.PlaybackMode.InBackground)
+        basic.showLeds(`
+            . . . . .
+            . # . # .
+            . . . . .
+            . # # # .
+            # . . . #
+            `)
+        basic.pause(2000)
+        control.reset()
+    }
+    if (enemy_item == chosen_item) {
+        music._playDefaultBackground(music.builtInPlayableMelody(Melodies.Wawawawaa), music.PlaybackMode.InBackground)
+        basic.showLeds(`
+            . . . . .
+            . # . # .
+            . . . . .
+            # # # # #
+            . . . . .
+            `)
+        basic.pause(2000)
+        control.reset()
+    }
+})
+input.onButtonPressed(Button.A, function () {
+    chosen_item = 1
+    radio.sendNumber(chosen_item)
+    music.play(music.createSoundExpression(WaveShape.Noise, 5000, 0, 255, 0, 100, SoundExpressionEffect.None, InterpolationCurve.Linear), music.PlaybackMode.InBackground)
+    basic.showLeds(`
+        . . . . .
+        . # # # .
+        . # # # .
+        . # # # .
+        . . . . .
+        `)
+})
+input.onButtonPressed(Button.AB, function () {
+    chosen_item = 3
+    radio.sendNumber(chosen_item)
+    music.play(music.createSoundExpression(WaveShape.Noise, 5000, 0, 255, 0, 100, SoundExpressionEffect.None, InterpolationCurve.Linear), music.PlaybackMode.InBackground)
+    basic.showLeds(`
+        . # # . .
+        . # # . .
+        # # # # #
+        # # # . .
+        . . # . .
+        `)
+})
+input.onButtonPressed(Button.B, function () {
+    chosen_item = 2
+    radio.sendNumber(chosen_item)
+    music.play(music.createSoundExpression(WaveShape.Noise, 5000, 0, 255, 0, 100, SoundExpressionEffect.None, InterpolationCurve.Linear), music.PlaybackMode.InBackground)
+    basic.showLeds(`
+        . # # . .
+        # # # # .
+        # # # # #
+        . # # # #
+        . . # # .
+        `)
+})
+let chosen_item = 0
+let enemy_item = 0
+radio.setGroup(1)
+basic.forever(function () {
+	
+})
