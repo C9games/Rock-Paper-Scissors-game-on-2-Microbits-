@@ -1,3 +1,5 @@
 The A button is the Rock, The B button is the Paper, and if you click A & B at the same time, or A+B as I like to call it, you choose Scissors.
 
 The A button is the left button and the B is the right button. (There is also a button on the back that resets the board, not in as wiping the code but just refreshing it.)
+
+After both players have selected something on each microbit, the winner will be decided, and you can tell who won depending on if you get a negative/positive beep. (You could also just change the sounds)
